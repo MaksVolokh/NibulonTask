@@ -1,7 +1,8 @@
-﻿
+﻿using System.Collections;
+
 namespace NibulonDAL.Entities
 {
-    public class Table1
+    public class Table1 : IEnumerable<Table1>
     {
         public int Id { get; set; }
         public int RecordNumber{ get; set; }
@@ -18,5 +19,15 @@ namespace NibulonDAL.Entities
         public decimal Moisture { get; set; }
         public decimal Impurity { get; set; }
         public string Contamination { get; set; }
+
+        public IEnumerator<Table1> GetEnumerator()
+        {
+            yield return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NibulonBLL.Dto;
 
 namespace NibulonBLL.Interfaces
 {
-    internal interface ITable3Service
+    public interface ITable3Service
     {
+        Task<Table3DTO> GetTable3ByDateAsync(DateTime date);
+        Task UpdateTable3Async(DateTime date);
     }
 }
