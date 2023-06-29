@@ -2,7 +2,7 @@
 
 namespace NibulonBLL.Dto
 {
-    public class Table2DTO
+    public class GrainElevatorArrivalsTableDTO
     {
         public int Id { get; set; }
         public int RecordNumber { get; set; }
@@ -31,8 +31,10 @@ namespace NibulonBLL.Dto
         [RegularExpression(@"^\d+(\.\d{1,4})?$", ErrorMessage = "Net quantity should have up to 4 decimal places.")]
         public decimal NetQuantity { get; set; }
         public string Direction { get; set; }
-        public decimal Moisture { get; set; }
-        public decimal Impurity { get; set; }
-        public string Contamination { get; set; }
+
+        [Range(11, 15, ErrorMessage = "Moisture should be between 11 and 15")]
+        public decimal? Moisture { get; set; }
+        public decimal? Impurity { get; set; }
+        public string? Contamination { get; set; }
     }
 }

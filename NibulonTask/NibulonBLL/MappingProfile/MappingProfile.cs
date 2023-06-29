@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using NibulonBLL.Dto;
 using NibulonDAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace NibulonBLL.MappingProfile
 {
@@ -13,22 +9,22 @@ namespace NibulonBLL.MappingProfile
     {
         public MappingProfile()
         {
-            CreateMap<Table1, Table1DTO>();
-            CreateMap<Table1DTO, Table1>();
+            CreateMap<GrainElevatorArrivalsTable, GrainElevatorArrivalsTableDTO>();
+            CreateMap<GrainElevatorArrivalsTableDTO, GrainElevatorArrivalsTable>();
 
-            CreateMap<Table1, Table2DTO>();
-            CreateMap<Table2DTO, Table1>();
+            CreateMap<GrainElevatorArrivalsTable, GroupedDataTableDTO>();
+            CreateMap<GroupedDataTableDTO, GrainElevatorArrivalsTable>();
                 
-            CreateMap<Table1, Table3DTO>()
+            CreateMap<GrainElevatorArrivalsTable, WeightedAverageTableDTO>()
                 .ForMember(dest => dest.AverageMoisture, opt => opt.MapFrom(src => CalculateAverageMoisture(src)))
                 .ForMember(dest => dest.AverageImpurity, opt => opt.MapFrom(src => CalculateAverageImpurity(src)))
                 .ForMember(dest => dest.AverageContamination, opt => opt.MapFrom(src => CalculateAverageContamination(src)));
             
         }
 
-        private decimal CalculateAverageMoisture(Table1 source)
+        private decimal? CalculateAverageMoisture(GrainElevatorArrivalsTable source)
         {
-            decimal totalMoisture = 0;
+            decimal? totalMoisture = 0;
             int count = 0;
 
             foreach (var record in source)
@@ -37,14 +33,14 @@ namespace NibulonBLL.MappingProfile
                 count++;
             }
 
-            decimal averageMoisture = count > 0 ? totalMoisture / count : 0;
+            decimal? averageMoisture = count > 0 ? totalMoisture / count : 0;
 
             return averageMoisture;
         }
 
-        private decimal CalculateAverageImpurity(Table1 source)
+        private decimal? CalculateAverageImpurity(GrainElevatorArrivalsTable source)
         {
-            decimal totalImpurity = 0;
+            decimal? totalImpurity = 0;
             int count = 0;
 
             foreach (var record in source)
@@ -53,12 +49,12 @@ namespace NibulonBLL.MappingProfile
                 count++;
             }
 
-            decimal averageImpurity = count > 0 ? totalImpurity / count : 0;
+            decimal? averageImpurity = count > 0 ? totalImpurity / count : 0;
 
             return averageImpurity;
         }
 
-        private string CalculateAverageContamination(Table1 source)
+        private string CalculateAverageContamination(GrainElevatorArrivalsTable source)
         {
             Dictionary<string, int> contaminationCounts = new Dictionary<string, int>();
 
@@ -70,7 +66,6 @@ namespace NibulonBLL.MappingProfile
                 {
                     contaminationCounts[contaminationValue]++;
                 }
-
                 else
                 {
                     contaminationCounts[contaminationValue] = 1;
@@ -96,8 +91,8 @@ namespace NibulonBLL.MappingProfile
             });
 
             IMapper mapper = config.CreateMapper();
-            return mapper;
 
+            return mapper;
         }
 
     }

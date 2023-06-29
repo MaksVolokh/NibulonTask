@@ -1,0 +1,60 @@
+﻿@model NibulonBLL.Dto.WeightedAverageTableDTO
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Weighted Average Table</h2>
+
+<div class="container">
+    @if (Model != null)
+    {
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Batch Number</th>
+                    <th>Date</th>
+                    <th>Department Code</th>
+                    <th>Harvest Year</th>
+                    <th>Contractor</th>
+                    <th>Name</th>
+                    <th>Unique Contract Number</th>
+                    <th>Item Code</th>
+                    <th>Price</th>
+                    <th>Net Quantity</th>
+                    <th>Direction</th>
+                    <th>Average Moisture</th>
+                    <th>Average Impurity</th>
+                    <th>Average Contamination</th>
+                    <th>Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Id</td>
+                    <td>@Model.BatchNumber</td>
+                    <td>@Model.Date</td>
+                    <td>@Model.DepartmentCode</td>
+                    <td>@Model.HarvestYear</td>
+                    <td>@Model.Contractor</td>
+                    <td>@Model.Name</td>
+                    <td>@Model.UniqueContractNumber</td>
+                    <td>@Model.ItemCode</td>
+                    <td>@Model.Price</td>
+                    <td>@Model.NetQuantity</td>
+                    <td>@Model.Direction</td>
+                    <td>@Model.AverageMoisture</td>
+                    <td>@Model.AverageImpurity</td>
+                    <td>@Model.AverageContamination</td>
+                    <td>@Model.Changes</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="not-found">Table is not found!</p>
+    }
+</div>
+

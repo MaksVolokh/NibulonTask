@@ -1,10 +1,10 @@
 ﻿
 namespace NibulonDAL.Entities
 {
-    public class Table2
+    public class WeightedAverageTable
     {
         public int Id { get; set; }
-        public int RecordNumber { get; set; }
+        public string BatchNumber { get; set; }
         public DateTime Date { get; set; }
         public int DepartmentCode { get; set; }
         public int HarvestYear { get; set; }
@@ -15,8 +15,9 @@ namespace NibulonDAL.Entities
         public decimal Price { get; set; }
         public decimal NetQuantity { get; set; }
         public string Direction { get; set; }
-        public decimal Moisture { get; set; }
-        public decimal Impurity { get; set; }
-        public string Contamination { get; set; }
+        public decimal? AverageMoisture { get; set; }
+        public decimal? AverageImpurity { get; set; }
+        public string? AverageContamination { get; set; }
+        public string Changes { get; set; }
     }
 }
